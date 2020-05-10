@@ -1,0 +1,27 @@
+<div class="logo">
+  <h1 [routerLink]="['/topics']">Gridzone</h1>
+  <p>Rock-solid Portfolio</p>
+</div>
+<ul>
+  <li [routerLink]="['/topics']" routerLinkActive="router-link-active">Home</li>
+  <li [routerLink]="['/user']" routerLinkActive="router-link-active">User</li>
+  <li mat-button [matMenuTriggerFor]="animals">Categories</li>
+  <li>Layouts</li>
+  <li>Typography</li>
+</ul>
+
+<!-- material -->
+<mat-menu #animals="matMenu">
+  <button mat-menu-item [matMenuTriggerFor]="vertebrates">Vertebrates</button>
+  <button mat-menu-item>
+    Invertebrates
+  </button>
+</mat-menu>
+
+<mat-menu #vertebrates="matMenu">
+  <button mat-menu-item>Fishes</button>
+  <button mat-menu-item>Amphibians</button>
+  <button mat-menu-item>Reptiles</button>
+  <button mat-menu-item>Birds</button>
+  <button mat-menu-item>Mammals</button>
+</mat-menu>

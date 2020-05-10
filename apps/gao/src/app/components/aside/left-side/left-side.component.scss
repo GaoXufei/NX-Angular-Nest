@@ -1,0 +1,65 @@
+:host {
+  background: var(--theme);
+  box-shadow: 0 5px 5px #ccc;
+
+  & ul {
+    padding: 20px 0;
+    height: 100%;
+    box-sizing: border-box;
+
+    & li {
+      & .iconfont {
+        font-size: 20px;
+      }
+
+      &:not(.search) {
+        padding-top: 15px;
+        position: relative;
+
+        & + li {
+          &::after {
+            content: '';
+            display: block;
+            width: 15px;
+            height: 1px;
+            background: #eee;
+            position: absolute;
+            top: 5px;
+            left: 50%;
+            transform: translateX(-50%);
+          }
+        }
+
+        & a {
+          text-decoration: none;
+          color: rgba(0, 0, 0, 0.7);
+          display: block;
+          text-align: center;
+          padding: 18px 10px;
+          margin: 0 20px;
+          border-radius: 10px;
+
+          &:hover {
+            background: #f1f1f1;
+          }
+        }
+      }
+
+      &.search {
+        padding-bottom: 10px;
+
+        span {
+          display: flex;
+          text-align: center;
+          width: 60px;
+          height: 60px;
+          justify-content: center;
+          align-items: center;
+          margin: 0 10px;
+          border-radius: 4px;
+          border: 1px solid #eee;
+        }
+      }
+    }
+  }
+}
