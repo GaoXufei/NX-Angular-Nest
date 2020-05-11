@@ -5,14 +5,32 @@
   grid-template-columns: 80px 1fr;
   // grid-gap: 20px;
 
-  header {
-  }
-
-  main {
-  }
-
-  aside {
+  & > aside {
     display: grid;
     grid-template-rows: 1fr;
+  }
+
+  & .gao-container {
+    overflow-y: scroll;
+
+    & > header {
+    }
+
+    & > main {
+      display: grid;
+      grid-template-columns: 1fr 300px;
+      grid-column-gap: 20px;
+      padding: 20px;
+      box-sizing: border-box;
+      height: calc(100vh - 80px);
+
+      & > div {
+        height: 3000px;
+      }
+
+      & > aside {
+        background: #ccc;
+      }
+    }
   }
 }

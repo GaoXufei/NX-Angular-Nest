@@ -1,11 +1,14 @@
-<aside>
+<aside class="left-aside">
   <nxgao-left-side></nxgao-left-side>
 </aside>
-<div class="ng-container">
+<div class="gao-container">
   <header>
     <nxgao-nav></nxgao-nav>
   </header>
   <main>
-    <router-outlet></router-outlet>
+    <div>
+      <router-outlet></router-outlet>
+    </div>
+    <aside></aside>
   </main>
 </div>
