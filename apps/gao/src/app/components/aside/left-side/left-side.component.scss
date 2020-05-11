@@ -1,6 +1,9 @@
 :host {
   background: var(--theme);
-  box-shadow: 0 5px 5px #ccc;
+  box-shadow: 0 5px 2px #ccc;
+  box-sizing: border-box;
+  position: relative;
+  z-index: 2;
 
   & ul {
     padding: 20px 0;
