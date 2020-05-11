@@ -1,0 +1,48 @@
+:host {
+  & dl {
+    padding: 40px;
+    box-sizing: border-box;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+
+    & + dl {
+      margin-top: 40px;
+    }
+
+    & dt {
+      font-size: 16px;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+    & dd {
+      & ul {
+        & li {
+          display: flex;
+          align-items: center;
+          justify-content: flex-start;
+          font-size: 14px;
+          color: #777;
+          padding: 10px 0;
+
+          & i {
+            color: #ccc;
+            margin-right: 5px;
+            font-size: 12px;
+          }
+          & p {
+            line-height: 17px;
+            flex: 1;
+            cursor: pointer;
+          }
+
+          &:hover {
+            & i {
+              color: #aaa;
+            }
+          }
+        }
+      }
+    }
+  }
+}

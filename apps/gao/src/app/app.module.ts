@@ -7,12 +7,13 @@ import { AppRoutingModule } from './app-routing.module';
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 import { SharedModule } from './shared/shared.module';
 import { LayoutModule } from './layout/layout.module';
-import { LeftSideComponent } from './components/aside/left-side/left-side.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [AppComponent],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     HttpClientModule,
     AppRoutingModule,
     SharedModule,
