@@ -1,11 +1,13 @@
-<mat-grid-list cols="3" rowHeight="fit">
+<mat-grid-list cols="4" gutterSize="20" rowHeight="fit">
   <mat-grid-tile
     *ngFor="let tile of tiles"
     [colspan]="1"
-    [rowspan]="1"
+    [rowspan]="2"
     [style.background]="tile.color"
   >
-    <img style="width: 100%; height: 100px;" src="" alt="" />
+    <mat-grid-tile-header>
+      <img style="width: 100%; height: 100px;" src="" alt="" />
+    </mat-grid-tile-header>
     {{ tile.text }}
   </mat-grid-tile>
 </mat-grid-list>
