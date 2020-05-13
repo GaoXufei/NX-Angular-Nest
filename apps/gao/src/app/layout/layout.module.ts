@@ -5,7 +5,6 @@ import { SharedModule } from '../shared/shared.module';
 import { NavComponent } from '../components/header/nav/nav.component';
 import { LeftSideComponent } from '../components/aside/left-side/left-side.component';
 import { RightSideComponent } from '../components/aside/right-side/right-side.component';
-import { FlexLayoutModule } from '@angular/flex-layout';
 
 const COMPONENTS = [
   LayoutDefaultComponent,
@@ -15,7 +14,7 @@ const COMPONENTS = [
 ];
 
 @NgModule({
-  imports: [CommonModule, SharedModule, FlexLayoutModule],
+  imports: [CommonModule, SharedModule],
   declarations: [...COMPONENTS]
 })
 export class LayoutModule {}

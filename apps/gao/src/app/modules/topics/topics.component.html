@@ -1,11 +1,10 @@
-<div fxLayout="row wrap" fxLayoutAlign="start">
-  <li
-    *ngFor="let item of tiles"
-    [fxFlex]="25"
-    [style.height]="item.height"
-    [style.background]="item.color"
-    fxLayoutAlign="start"
+<mat-grid-list cols="4" rowHeight="100px">
+  <mat-grid-tile
+    *ngFor="let tile of tiles"
+    [style.height]="tile.height"
+    [style.background]="tile.color"
   >
-    {{ item.text }}
-  </li>
-</div>
+    {{ tile.text }}
+  </mat-grid-tile>
+</mat-grid-list>
+<nxgao-water-fall></nxgao-water-fall>
