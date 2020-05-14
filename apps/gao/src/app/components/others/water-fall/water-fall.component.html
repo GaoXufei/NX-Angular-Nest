@@ -1,1 +1,6 @@
-<p>water-fall works!</p>
+<ul #wrap>
+  <li *ngFor="let item of list" #item class="item">
+    <img [src]="item.image" alt="" />
+    <p>{{ item.title }}</p>
+  </li>
+</ul>

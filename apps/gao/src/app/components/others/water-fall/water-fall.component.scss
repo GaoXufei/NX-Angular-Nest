@@ -1,0 +1,19 @@
+:host {
+  width: 100%;
+
+  & ul {
+    width: 100%;
+    position: relative;
+
+    & > .item {
+      position: absolute;
+      width: 300px;
+      transition: all 0.5s;
+
+      & > img {
+        display: block;
+        width: 100%;
+      }
+    }
+  }
+}
