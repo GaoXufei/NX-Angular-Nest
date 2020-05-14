@@ -8,6 +8,7 @@ import {
   ViewChild
 } from '@angular/core';
 import { fromEvent } from 'rxjs';
+import { debounceTime } from 'rxjs/operators';
 
 interface InterfaceList {
   image: string;
@@ -20,7 +21,7 @@ interface InterfaceList {
   styleUrls: ['./water-fall.component.scss']
 })
 export class WaterFallComponent implements OnInit, AfterViewInit {
-  public gap = 20;
+  public gap = 0;
   public list: InterfaceList[] = [
     {
       image: 'https://img.xjh.me/desktop/img/49969316_p0.jpg',
@@ -60,10 +61,36 @@ export class WaterFallComponent implements OnInit, AfterViewInit {
   ngOnInit(): void {}
 
   ngAfterViewInit() {
-    this.waterFall();
-    fromEvent(document, 'resize').subscribe(alert);
+    fromEvent(window, 'resize')
+      .pipe(debounceTime(500))
+      .subscribe(() => {
+        this.waterFall();
+      });
+
+    this.imgsLoaded(this.waterFall());
   }
 
+  /**
+   * 图片全部加载完毕
+   * @param cb 回调函数，图片全部加载完毕执行
+   */
+  imgsLoaded(cb) {
+    const imgsDOM = Array.from(
+      this.view.nativeElement.getElementsByTagName('img')
+    );
+    const imagesPromise = imgsDOM.map((img: any, index) => {
+      return new Promise((resolve, reject) => {
+        img.onload = function(response) {
+          resolve(response);
+        };
+      });
+    });
+    Promise.all(imagesPromise).then(cb);
+  }
+
+  /**
+   * 瀑布流布局
+   */
   waterFall() {
     // 获取容器宽度
     const wrapWidth: number = this.view.nativeElement.offsetWidth;
@@ -89,13 +116,14 @@ export class WaterFallComponent implements OnInit, AfterViewInit {
           // 将第一行的高度保存到数组中
           heightInArray.push(item.nativeElement.offsetHeight);
         } else {
-          // 找到最低高度
+          // // 找到最低高度
           const minHeight = Math.min(...heightInArray);
           // 找到最低高度的下标
           const minIndex = heightInArray.indexOf(minHeight);
 
           // 设置下一行盒子的位置 top值为最小列的高度 + 间距值
-          item.nativeElement.style.top = `${minHeight + this.gap}px`;
+          item.nativeElement.style.top = `${heightInArray[minIndex] +
+            this.gap}px`;
           item.nativeElement.style.left = `${items[minIndex].nativeElement.offsetLeft}px`;
 
           // 修改最小高度
