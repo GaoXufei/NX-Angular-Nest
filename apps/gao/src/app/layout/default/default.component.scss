@@ -13,6 +13,7 @@
     overflow-y: scroll;
 
     & > header {
+      // ...
     }
 
     & > main {
@@ -23,8 +24,15 @@
       box-sizing: border-box;
       height: calc(100vh - 80px);
 
+      @media screen and (max-width: 1280px) {
+        grid-template-columns: 1fr 0;
+        & > aside {
+          display: none;
+        }
+      }
+
       & > div {
-        height: 3000px;
+        // ...
       }
 
       & > aside {

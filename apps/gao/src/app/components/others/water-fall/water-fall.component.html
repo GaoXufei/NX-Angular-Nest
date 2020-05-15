@@ -1,6 +1,8 @@
 <ul #wrap>
   <li *ngFor="let item of list" #item class="item">
-    <img [src]="item.image" alt="" />
-    <p>{{ item.title }}</p>
+    <article>
+      <img [src]="item.image" alt="" />
+      <p>{{ item.title }}</p>
+    </article>
   </li>
 </ul>

@@ -5,10 +5,11 @@ import {
   AfterViewInit,
   ViewChildren,
   QueryList,
-  ViewChild
+  ViewChild,
+  OnDestroy
 } from '@angular/core';
-import { fromEvent } from 'rxjs';
-import { debounceTime } from 'rxjs/operators';
+import { fromEvent, Subject } from 'rxjs';
+import { debounceTime, takeUntil } from 'rxjs/operators';
 
 interface InterfaceList {
   image: string;
@@ -20,12 +21,53 @@ interface InterfaceList {
   templateUrl: './water-fall.component.html',
   styleUrls: ['./water-fall.component.scss']
 })
-export class WaterFallComponent implements OnInit, AfterViewInit {
+export class WaterFallComponent implements OnInit, AfterViewInit, OnDestroy {
+  public eventEnd$: Subject<any> = new Subject();
   public gap = 0;
   public list: InterfaceList[] = [
     {
       image: 'https://img.xjh.me/desktop/img/49969316_p0.jpg',
       title: 'title 1'
+    },
+    {
+      image: 'https://img.xjh.me/desktop/img/48856765_p0.jpg',
+      title: 'title 2'
+    },
+    {
+      image: 'https://img.xjh.me/desktop/img/52594107_p0.jpg',
+      title: 'title 3'
+    },
+    {
+      image: 'https://img.xjh.me/desktop/img/63868383_p0_master1200.jpg',
+      title: 'title 4'
+    },
+    {
+      image: 'https://img.xjh.me/desktop/img/53860407_p0.jpg',
+      title: 'title 5'
+    },
+    {
+      image: 'https://img.xjh.me/desktop/img/ren-4.jpg',
+      title: 'title 6'
+    },
+    {
+      image: 'https://img.xjh.me/desktop/img/48856765_p0.jpg',
+      title: 'title 2'
+    },
+    {
+      image: 'https://img.xjh.me/desktop/img/52594107_p0.jpg',
+      title: 'title 3'
+    },
+    {
+      image: 'https://img.xjh.me/desktop/img/63868383_p0_master1200.jpg',
+      title: 'title 4'
+    },
+    {
+      image: 'https://img.xjh.me/desktop/img/53860407_p0.jpg',
+      title: 'title 5'
+    },
+    {
+      image: 'https://img.xjh.me/desktop/img/ren-4.jpg',
+      title: 'title 6'
     },
     {
       image: 'https://img.xjh.me/desktop/img/48856765_p0.jpg',
@@ -54,20 +96,30 @@ export class WaterFallComponent implements OnInit, AfterViewInit {
   // 获取单个item节点
   @ViewChild('item') viewItem: ElementRef;
   // 获取列表dom节点
-  @ViewChildren('item') viewItems: QueryList<any>;
+  @ViewChildren('item') viewItems: QueryList<ElementRef>;
 
   constructor(private readonly elementRef: ElementRef) {}
 
   ngOnInit(): void {}
 
   ngAfterViewInit() {
-    fromEvent(window, 'resize')
-      .pipe(debounceTime(500))
-      .subscribe(() => {
-        this.waterFall();
-      });
+    this.eventLayout();
+  }
 
-    this.imgsLoaded(this.waterFall());
+  ngOnDestroy() {
+    // 组件销毁时取消event订阅
+    this.eventEnd$.next();
+    this.eventEnd$.complete();
+  }
+
+  eventLayout() {
+    // 监听window对象的resize事件
+    fromEvent(window, 'resize')
+      .pipe(takeUntil(this.eventEnd$), debounceTime(500))
+      .subscribe(() => {
+        this.waterFallLayout();
+      });
+    this.imgsLoaded(this.waterFallLayout());
   }
 
   /**
@@ -89,50 +141,41 @@ export class WaterFallComponent implements OnInit, AfterViewInit {
   }
 
   /**
-   * 瀑布流布局
+   * 瀑布流布局函数
    */
-  waterFall() {
-    // 获取容器宽度
-    const wrapWidth: number = this.view.nativeElement.offsetWidth;
-    // 单个子节点宽度
-    const itemWidth: number = this.viewItem.nativeElement.offsetWidth;
-    // 计算一行能放几列
-    const colunmCount: number = parseInt(
-      `${wrapWidth / (itemWidth + this.gap)}`,
+  waterFallLayout() {
+    // 定义存放高度数组
+    const arrayHeight = [];
+    // 获取单个元素宽度
+    const itemWidth = this.viewItem.nativeElement.offsetWidth;
+    // 计算一行当中可以放几个元素
+    const colunmCount = parseInt(
+      `${this.view.nativeElement.offsetWidth / itemWidth}`,
       10
     );
+    // 初始化高度数组
+    for (let i = 0; i < colunmCount; i++) {
+      arrayHeight[i] = 0;
+    }
 
-    // 定义盛放高度的数组
-    const heightInArray = [];
-    // 遍历子节点
+    // 循环子元素
     this.viewItems.forEach(
       (item: ElementRef, index: number, items: ElementRef[]) => {
-        // 下标小于一行能摆放的数量，说明是在第一行
-        if (index < colunmCount) {
-          // 第一行top偏移量为0
-          item.nativeElement.style.top = 0;
-          // 左偏移量 = 下标 * (单子节点 + 间距量)
-          item.nativeElement.style.left = `${index * (itemWidth + this.gap)}px`;
-          // 将第一行的高度保存到数组中
-          heightInArray.push(item.nativeElement.offsetHeight);
-        } else {
-          // // 找到最低高度
-          const minHeight = Math.min(...heightInArray);
-          // 找到最低高度的下标
-          const minIndex = heightInArray.indexOf(minHeight);
-
-          // 设置下一行盒子的位置 top值为最小列的高度 + 间距值
-          item.nativeElement.style.top = `${heightInArray[minIndex] +
-            this.gap}px`;
-          item.nativeElement.style.left = `${items[minIndex].nativeElement.offsetLeft}px`;
-
-          // 修改最小高度
-          heightInArray[minIndex] =
-            heightInArray[minIndex] +
-            item.nativeElement.offsetHeight +
-            this.gap;
-        }
+        // 找到最小高度
+        const minHeight = Math.min(...arrayHeight);
+        // 找到最小高度的下标
+        const minIndex = arrayHeight.indexOf(minHeight);
+        // 当前left偏移量 = 最小高度的下标 x 单元素宽度
+        item.nativeElement.style.left = `${minIndex * itemWidth}px`;
+        // 当前top偏移量 = 最小高度
+        item.nativeElement.style.top = `${minHeight}px`;
+        // 更新当前最小高度 = 最小高度 + 当前高度
+        arrayHeight[minIndex] += item.nativeElement.offsetHeight;
       }
     );
+    // 获取最高高度
+    const maxHeight = Math.max(...arrayHeight);
+    // 将最高高度赋值给容器
+    this.view.nativeElement.style.height = `${maxHeight}px`;
   }
 }

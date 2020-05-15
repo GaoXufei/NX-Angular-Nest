@@ -7,7 +7,19 @@
   --background: #f5f5f5;
   font-family: 'Titillium', Arial, sans-serif;
 }
-
+/* 禁止滚动条滚动 */
+.no-scroll {
+  overflow-y: hidden;
+}
+/* 滚动条样式 */
+::-webkit-scrollbar {
+  width: 5px;
+  background-color: #0e487c;
+}
+::-webkit-scrollbar-thumb {
+  background-color: #4facfa;
+}
+/* 定义html, body */
 body,
 html {
   height: 100%;
