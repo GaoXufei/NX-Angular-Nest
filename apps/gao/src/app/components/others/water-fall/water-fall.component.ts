@@ -27,67 +27,67 @@ export class WaterFallComponent implements OnInit, AfterViewInit, OnDestroy {
   public list: InterfaceList[] = [
     {
       image: 'https://img.xjh.me/desktop/img/49969316_p0.jpg',
-      title: 'title 1'
+      title: 'From Square To Circle 1'
     },
     {
       image: 'https://img.xjh.me/desktop/img/48856765_p0.jpg',
-      title: 'title 2'
+      title: 'From Square To Circle 2'
     },
     {
       image: 'https://img.xjh.me/desktop/img/52594107_p0.jpg',
-      title: 'title 3'
+      title: 'From Square To Circle 3'
     },
     {
       image: 'https://img.xjh.me/desktop/img/63868383_p0_master1200.jpg',
-      title: 'title 4'
+      title: 'From Square To Circle 4'
     },
     {
       image: 'https://img.xjh.me/desktop/img/53860407_p0.jpg',
-      title: 'title 5'
+      title: 'From Square To Circle 5'
     },
     {
       image: 'https://img.xjh.me/desktop/img/ren-4.jpg',
-      title: 'title 6'
+      title: 'From Square To Circle 6'
     },
     {
       image: 'https://img.xjh.me/desktop/img/48856765_p0.jpg',
-      title: 'title 2'
+      title: 'From Square To Circle 2'
     },
     {
       image: 'https://img.xjh.me/desktop/img/52594107_p0.jpg',
-      title: 'title 3'
+      title: 'From Square To Circle 3'
     },
     {
       image: 'https://img.xjh.me/desktop/img/63868383_p0_master1200.jpg',
-      title: 'title 4'
+      title: 'From Square To Circle 4'
     },
     {
       image: 'https://img.xjh.me/desktop/img/53860407_p0.jpg',
-      title: 'title 5'
+      title: 'From Square To Circle 5'
     },
     {
       image: 'https://img.xjh.me/desktop/img/ren-4.jpg',
-      title: 'title 6'
+      title: 'From Square To Circle 6'
     },
     {
       image: 'https://img.xjh.me/desktop/img/48856765_p0.jpg',
-      title: 'title 2'
+      title: 'From Square To Circle 2'
     },
     {
       image: 'https://img.xjh.me/desktop/img/52594107_p0.jpg',
-      title: 'title 3'
+      title: 'From Square To Circle 3'
     },
     {
       image: 'https://img.xjh.me/desktop/img/63868383_p0_master1200.jpg',
-      title: 'title 4'
+      title: 'From Square To Circle 4'
     },
     {
       image: 'https://img.xjh.me/desktop/img/53860407_p0.jpg',
-      title: 'title 5'
+      title: 'From Square To Circle 5'
     },
     {
       image: 'https://img.xjh.me/desktop/img/ren-4.jpg',
-      title: 'title 6'
+      title: 'From Square To Circle 6'
     }
   ];
 

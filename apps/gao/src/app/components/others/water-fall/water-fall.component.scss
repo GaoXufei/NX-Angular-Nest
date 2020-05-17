@@ -10,7 +10,7 @@
       width: 24.93%;
       padding: 20px;
       box-sizing: border-box;
-      transition: all 0.5s, width 1s;
+      transition: all 0.4s;
       @media screen and (max-width: 1600px) {
         width: 33%;
       }
@@ -21,20 +21,44 @@
         width: 100%;
       }
 
-      & article {
-        overflow: hidden;
+      & mat-card {
         border-radius: 10px;
+        overflow: hidden;
+        border: none;
         box-shadow: 0 0 10px #ccc;
 
-        & > img {
-          display: block;
-          width: 100%;
+        & mat-card-content {
+          font-size: 16px;
+          font-weight: 600;
+          padding-top: 4px;
+          margin-bottom: 20px;
         }
 
-        & > p {
-          height: 92px;
-          font-weight: 700;
-          background: #fff;
+        & mat-card-actions {
+          padding: 0 8px 12px 8px;
+          box-sizing: border-box;
+          font-size: 14px;
+          color: #999;
+          display: flex;
+          align-items: center;
+
+          & > div {
+            display: flex;
+            align-items: center;
+
+            & + div {
+              margin-left: 16px;
+            }
+
+            & i {
+              font-size: 18px;
+            }
+
+            & span {
+              margin-left: 5px;
+              font-weight: lighter;
+            }
+          }
         }
       }
     }

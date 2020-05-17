@@ -1,8 +1,22 @@
 <ul #wrap>
   <li *ngFor="let item of list" #item class="item">
-    <article>
-      <img [src]="item.image" alt="" />
-      <p>{{ item.title }}</p>
-    </article>
+    <mat-card class="example-card">
+      <img mat-card-image [src]="item.image" alt="Photo of a Shiba Inu" />
+      <mat-card-content>
+        <div>
+          {{ item.title }}
+        </div>
+      </mat-card-content>
+      <mat-card-actions>
+        <div>
+          <i class="iconfont icon-riqi1"></i>
+          <span>July 7, 2019</span>
+        </div>
+        <div>
+          <i class="iconfont icon-xiaoxi"></i>
+          <span>9999</span>
+        </div>
+      </mat-card-actions>
+    </mat-card>
   </li>
 </ul>

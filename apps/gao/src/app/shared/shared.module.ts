@@ -3,8 +3,15 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatGridListModule } from '@angular/material/grid-list';
+import { MatCardModule } from '@angular/material/card';
+import { MatButtonModule } from '@angular/material/button';
 
-const MaterialModules = [MatMenuModule, MatGridListModule];
+const MaterialModules = [
+  MatMenuModule,
+  MatGridListModule,
+  MatCardModule,
+  MatButtonModule
+];
 
 @NgModule({
   declarations: [],
