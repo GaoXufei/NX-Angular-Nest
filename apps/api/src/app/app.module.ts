@@ -4,14 +4,15 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { UserModule } from './modules/user/user.module';
-
 import { TypeOrmConfig } from '@api/typeorm.config';
 
+import { UserModule } from './modules/user/user.module';
 import { UserEntity } from '@api/src/app/modules/user/user.entity';
 import { AuthModule } from './modules/auth/auth.module';
+import { TopicModule } from './modules/topic/topic.module';
+import { TopicEntity } from './modules/topic/topic.entity';
 // entities
-const ENTITIES = [UserEntity];
+const ENTITIES = [UserEntity, TopicEntity];
 
 @Module({
   imports: [
@@ -20,7 +21,8 @@ const ENTITIES = [UserEntity];
       entities: [...ENTITIES]
     }),
     UserModule,
-    AuthModule
+    AuthModule,
+    TopicModule
   ],
   controllers: [AppController],
   providers: [AppService]

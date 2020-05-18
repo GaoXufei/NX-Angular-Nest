@@ -1,6 +1,5 @@
 import {
   Controller,
-  Get,
   Post,
   Body,
   Put,
@@ -17,6 +16,7 @@ export class UserController {
 
   // 增加用户
   @Post()
+  @UseInterceptors(ClassSerializerInterceptor)
   async store(@Body() data: UserDto) {
     return this.userService.store(data);
   }
