@@ -1,4 +1,12 @@
-import { Controller, Post, Body, Get, UseGuards } from '@nestjs/common';
+import {
+  Controller,
+  Post,
+  Body,
+  Get,
+  UseGuards,
+  ValidationPipe,
+  UsePipes
+} from '@nestjs/common';
 import { TopicService } from './topic.service';
 import { TopicDto } from './topic.dto';
 import { AuthGuard } from '@nestjs/passport';
@@ -9,6 +17,7 @@ export class TopicController {
 
   @Post()
   @UseGuards(AuthGuard())
+  @UsePipes(ValidationPipe)
   async store(@Body() data: TopicDto) {
     const entity = await this.topicService.store(data);
     return entity;

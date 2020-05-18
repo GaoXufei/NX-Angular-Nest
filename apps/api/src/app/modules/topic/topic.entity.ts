@@ -3,8 +3,10 @@ import {
   PrimaryGeneratedColumn,
   Column,
   CreateDateColumn,
-  UpdateDateColumn
+  UpdateDateColumn,
+  ManyToOne
 } from 'typeorm';
+import { UserEntity } from '../user/user.entity';
 
 @Entity({ name: 'topic' })
 export class TopicEntity {
@@ -22,4 +24,11 @@ export class TopicEntity {
 
   @UpdateDateColumn()
   updated: Date;
+
+  // 关联项
+  @ManyToOne(
+    type => UserEntity,
+    user => user.topics
+  )
+  user: UserEntity;
 }

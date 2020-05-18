@@ -5,10 +5,12 @@ import {
   CreateDateColumn,
   UpdateDateColumn,
   BeforeInsert,
-  BeforeUpdate
+  BeforeUpdate,
+  OneToMany
 } from 'typeorm';
 import * as bcrypt from 'bcrypt';
 import { Exclude } from 'class-transformer';
+import { TopicEntity } from '../topic/topic.entity';
 
 @Entity({ name: 'user' })
 export class UserEntity {
@@ -27,6 +29,13 @@ export class UserEntity {
 
   @UpdateDateColumn()
   updated: Date;
+
+  // 关联项
+  @OneToMany(
+    type => TopicEntity,
+    topic => topic.user
+  )
+  topics: TopicEntity[];
 
   @BeforeInsert()
   @BeforeUpdate()
