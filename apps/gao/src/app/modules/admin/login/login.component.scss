@@ -14,10 +14,27 @@
 
           & mat-form-field {
             width: 100%;
+
+            & .iconfont {
+              margin-right: 10px;
+            }
           }
 
           & > div {
             margin-top: 20px;
+          }
+        }
+
+        &[colspan='2'] {
+          &::ng-deep .mat-figure {
+            justify-content: flex-end;
+          }
+        }
+
+        &[colspan='4'] {
+          & img {
+            width: 60%;
+            min-width: 650px;
           }
         }
       }

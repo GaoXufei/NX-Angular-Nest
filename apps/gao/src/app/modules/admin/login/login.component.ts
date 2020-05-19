@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Validators, FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'nxgao-login',
@@ -7,20 +7,18 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-  // 创建一个formGroup
-  registerForm = new FormGroup({
-    username: new FormControl('', [Validators.required]),
-    password: new FormControl('', [Validators.required])
+  // 创建一个formGroup -> formBuilder
+  registerForm = this.formBuilder.group({
+    username: ['', [Validators.required]],
+    password: ['', [Validators.required]]
   });
 
-  constructor() {}
+  constructor(private readonly formBuilder: FormBuilder) {}
 
-  ngOnInit(): void {
-    const statusChanges$ = this.registerForm.statusChanges;
-    statusChanges$.subscribe(console.log);
-  }
+  ngOnInit(): void {}
 
   public async handleLogin() {
-    console.log(this.registerForm.value);
+    const isValidate = this.registerForm.status;
+    if (isValidate === 'VALID') alert(`提交！`);
   }
 }
