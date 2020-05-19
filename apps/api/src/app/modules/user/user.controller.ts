@@ -5,7 +5,8 @@ import {
   Put,
   Param,
   UseInterceptors,
-  ClassSerializerInterceptor
+  ClassSerializerInterceptor,
+  ParseIntPipe
 } from '@nestjs/common';
 import { UserService } from './user.service';
 import { UserDto, UpdatePasswordDto } from './user.dto';
@@ -24,7 +25,10 @@ export class UserController {
   // 修改密码
   @Put(':id/password')
   @UseInterceptors(ClassSerializerInterceptor)
-  async update(@Param('id') id: string, @Body() data: UpdatePasswordDto) {
+  async update(
+    @Param('id', ParseIntPipe) id: number,
+    @Body() data: UpdatePasswordDto
+  ) {
     const entity = await this.userService.updatePasswordById(id, data);
     return entity;
   }

@@ -35,7 +35,7 @@ export class UserService {
    * @param id 用户id
    * @param data 用户账号密码
    */
-  async updatePasswordById(id: string, data: UpdatePasswordDto) {
+  async updatePasswordById(id: number, data: UpdatePasswordDto) {
     // 解构用户输入
     const { password, newPassword } = data;
     // 查找用户实体

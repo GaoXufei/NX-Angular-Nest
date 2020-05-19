@@ -5,7 +5,9 @@ import {
   Get,
   UseGuards,
   ValidationPipe,
-  UsePipes
+  UsePipes,
+  UseInterceptors,
+  ClassSerializerInterceptor
 } from '@nestjs/common';
 import { TopicService } from './topic.service';
 import { TopicDto } from './topic.dto';
@@ -24,6 +26,7 @@ export class TopicController {
   }
 
   @Get()
+  @UseInterceptors(ClassSerializerInterceptor)
   async topics() {
     const entity = await this.topicService.topic();
     return entity;

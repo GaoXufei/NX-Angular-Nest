@@ -17,7 +17,9 @@ export class TopicService {
   }
 
   async topic() {
-    const entity = await this.topicRepository.find();
+    const entity = await this.topicRepository.find({
+      relations: ['user']
+    });
     return entity;
   }
 }
