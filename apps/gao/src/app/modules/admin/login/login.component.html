@@ -1,16 +1,40 @@
-<fieldset>
-  <legend>登录页</legend>
-  <ul>
-    <li>
-      <label for="">UserName</label>
-      <input type="text" name="username" />
-    </li>
-    <li>
-      <label for="">Password</label>
-      <input type="password" name="password" />
-    </li>
-    <li>
-      <button>登录</button>
-    </li>
-  </ul>
-</fieldset>
+<div class="container">
+  <mat-grid-list cols="6" rowHeight="100vh">
+    <mat-grid-tile colspan="2">
+      <form [formGroup]="registerForm" (ngSubmit)="handleLogin()">
+        <mat-toolbar>
+          <span>Login Module</span>
+        </mat-toolbar>
+        <mat-form-field>
+          <mat-label>Username</mat-label>
+          <input
+            matInput
+            formControlName="username"
+            autocomplete="on"
+            placeholder="input user Username"
+          />
+          <mat-hint>Errors appear instantly!</mat-hint>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Password</mat-label>
+          <input
+            matInput
+            formControlName="password"
+            type="password"
+            autocomplete="off"
+            placeholder="input user Password"
+          />
+          <mat-hint>Errors appear instantly!</mat-hint>
+        </mat-form-field>
+        <div>
+          <button type="submit" mat-raised-button color="primary">
+            Login
+          </button>
+        </div>
+      </form>
+    </mat-grid-tile>
+    <mat-grid-tile colspan="4">
+      <!-- <img src="../../../../assets/images/sign-bg.jpg" alt="" /> -->
+    </mat-grid-tile>
+  </mat-grid-list>
+</div>

@@ -1,7 +1,26 @@
 :host {
-  fieldset {
-    width: 300px;
-    padding: 10px;
-    border: 1px solid red;
+  & .container {
+    height: 100vh;
+    background: var(--theme);
+
+    & mat-grid-list {
+      & mat-grid-tile {
+        & form {
+          width: 300px;
+
+          & mat-toolbar {
+            background: transparent;
+          }
+
+          & mat-form-field {
+            width: 100%;
+          }
+
+          & > div {
+            margin-top: 20px;
+          }
+        }
+      }
+    }
   }
 }
