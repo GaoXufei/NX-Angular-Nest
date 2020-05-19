@@ -12,6 +12,8 @@ import {
 import { TopicService } from './topic.service';
 import { TopicDto } from './topic.dto';
 import { AuthGuard } from '@nestjs/passport';
+import { UserDecorator } from '../../core/decorators/user.decorator';
+import { UserDto } from '../user/user.dto';
 
 @Controller('topic')
 export class TopicController {
@@ -20,8 +22,8 @@ export class TopicController {
   @Post()
   @UseGuards(AuthGuard())
   @UsePipes(ValidationPipe)
-  async store(@Body() data: TopicDto) {
-    const entity = await this.topicService.store(data);
+  async store(@Body() data: TopicDto, @UserDecorator() user: UserDto) {
+    const entity = await this.topicService.store(data, user);
     return entity;
   }
 

@@ -3,6 +3,7 @@ import { Repository } from 'typeorm';
 import { TopicEntity } from './topic.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { TopicDto } from './topic.dto';
+import { UserDto } from '../user/user.dto';
 
 @Injectable()
 export class TopicService {
@@ -11,11 +12,24 @@ export class TopicService {
     private readonly topicRepository: Repository<TopicEntity>
   ) {}
 
-  async store(data: TopicDto) {
+  /**
+   * 添加文章
+   * @param data 用户输入的数据
+   * @param user 从token中解析出的用户数据
+   */
+  async store(data: TopicDto, user: UserDto) {
+    // 创建文章
     const entity = this.topicRepository.create(data);
-    return await this.topicRepository.save(entity);
+    // 将用户信息与文章信息合并保存
+    return await this.topicRepository.save({
+      ...entity,
+      user
+    });
   }
 
+  /**
+   * 查询文章
+   */
   async topic() {
     const entity = await this.topicRepository.find({
       relations: ['user']
