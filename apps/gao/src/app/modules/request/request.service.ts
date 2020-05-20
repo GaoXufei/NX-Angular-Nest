@@ -12,9 +12,11 @@ export class RequestService {
   login = (data: Login) => {
     return this.http.post('/api/auth/login', data).pipe(
       map((response: LoginResponse) => {
-        const { token } = response;
-        console.log(token);
-        return response;
+        const { token, ...result } = response;
+        if (status === 'success') {
+          console.log(token);
+        }
+        return result;
       })
     );
   };

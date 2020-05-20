@@ -1,12 +1,9 @@
-import {
-  Injectable,
-  NotFoundException,
-  UnauthorizedException
-} from '@nestjs/common';
+import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { UserService } from '../user/user.service';
 import { UserDto } from '../user/user.dto';
 import { JwtPayload } from './auth.interface';
 import { JwtService } from '@nestjs/jwt';
+import { errorProcess } from '../../core/public/error';
 
 @Injectable()
 export class AuthService {
@@ -25,12 +22,12 @@ export class AuthService {
     // 通过用户service根据username找到该实体
     const entity = await this.userService.findByName(username);
     // 如果找不到实体，说明没有该用户
-    if (!entity) throw new NotFoundException('用户不存在');
+    if (!entity) return errorProcess({ msg: '用户不存在', status: 'failed' });
     // 如果找到该实体
     // 对比密码
     const isPass = await entity.comparePassword(password);
     // 如果密码不匹配
-    if (!isPass) throw new UnauthorizedException('密码不匹配');
+    if (!isPass) return errorProcess({ msg: '密码不匹配', status: 'failed' });
 
     // 进行签发
     const { id } = entity;
@@ -38,6 +35,7 @@ export class AuthService {
     const token = this.signToken(payload);
 
     return {
+      ...errorProcess({ msg: '登录成功', status: 'success' }),
       ...payload,
       token
     };

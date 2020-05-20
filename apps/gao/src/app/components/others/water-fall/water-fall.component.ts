@@ -144,8 +144,6 @@ export class WaterFallComponent implements OnInit, AfterViewInit, OnDestroy {
    * 瀑布流布局函数
    */
   waterFallLayout() {
-    // 定义存放高度数组
-    const arrayHeight = [];
     // 获取单个元素宽度
     const itemWidth = this.viewItem.nativeElement.offsetWidth;
     // 计算一行当中可以放几个元素
@@ -154,10 +152,8 @@ export class WaterFallComponent implements OnInit, AfterViewInit, OnDestroy {
       10
     );
     // 初始化高度数组
-    for (let i = 0; i < colunmCount; i++) {
-      arrayHeight[i] = 0;
-    }
-
+    // 定义存放高度数组
+    const arrayHeight = Array(colunmCount).fill(0);
     // 循环子元素
     this.viewItems.forEach(
       (item: ElementRef, index: number, items: ElementRef[]) => {

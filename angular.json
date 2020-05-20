@@ -155,7 +155,7 @@
             }
           }
         },
-        "serve": {
+        "dev": {
           "builder": "@nrwl/node:execute",
           "options": {
             "buildTarget": "api:build"

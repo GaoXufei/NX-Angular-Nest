@@ -4,7 +4,9 @@ export interface Login {
 }
 
 export interface LoginResponse {
-  id: number;
-  token: string;
-  username: string;
+  id?: number;
+  token?: string;
+  username?: string;
+  msg: string;
+  status: 'success' | 'failed';
 }
