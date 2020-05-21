@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Validators, FormBuilder } from '@angular/forms';
-import { RequestService } from '../../request/request.service';
 import { Login } from '@gao/src/app/types/login';
+import { Router } from '@angular/router';
+import { timer } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { RequestService } from '../../../request/request.service';
 
 @Component({
   selector: 'nxgao-login',
@@ -9,6 +12,8 @@ import { Login } from '@gao/src/app/types/login';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
+  public signLoading = false;
+  private login;
   // 创建一个formGroup -> formBuilder
   registerForm = this.formBuilder.group({
     username: ['', [Validators.required]],
@@ -17,7 +22,8 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private readonly formBuilder: FormBuilder,
-    private readonly requestService: RequestService
+    private readonly requestService: RequestService,
+    private readonly router: Router
   ) {}
 
   ngOnInit(): void {}
@@ -25,10 +31,20 @@ export class LoginComponent implements OnInit {
   public async handleLogin() {
     const isValidate = this.registerForm.status;
 
+    timer(3000)
+      .pipe((item: any) => {
+        this.signLoading = true;
+        return item;
+      })
+      .subscribe(() => (this.signLoading = false));
+
     if (isValidate === 'VALID') {
       const data: Login = this.registerForm.value;
       const login$ = this.requestService.login(data);
-      login$.subscribe(console.log);
+      login$.subscribe(response => {
+        console.log(response);
+        this.router.navigate(['/']);
+      });
     }
   }
 }

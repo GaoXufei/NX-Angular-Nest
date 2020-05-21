@@ -3,7 +3,7 @@ import { UserService } from '../user/user.service';
 import { UserDto } from '../user/user.dto';
 import { JwtPayload } from './auth.interface';
 import { JwtService } from '@nestjs/jwt';
-import { errorProcess } from '../../core/public/error';
+import { authErrorProcess } from '../../core/public/error';
 
 @Injectable()
 export class AuthService {
@@ -22,12 +22,22 @@ export class AuthService {
     // 通过用户service根据username找到该实体
     const entity = await this.userService.findByName(username);
     // 如果找不到实体，说明没有该用户
-    if (!entity) return errorProcess({ msg: '用户不存在', status: 'failed' });
+    if (!entity)
+      return authErrorProcess({
+        msg: '用户不存在',
+        status: 'failed',
+        code: 400
+      });
     // 如果找到该实体
     // 对比密码
     const isPass = await entity.comparePassword(password);
     // 如果密码不匹配
-    if (!isPass) return errorProcess({ msg: '密码不匹配', status: 'failed' });
+    if (!isPass)
+      return authErrorProcess({
+        msg: '密码不匹配',
+        status: 'failed',
+        code: 400
+      });
 
     // 进行签发
     const { id } = entity;
@@ -35,7 +45,7 @@ export class AuthService {
     const token = this.signToken(payload);
 
     return {
-      ...errorProcess({ msg: '登录成功', status: 'success' }),
+      ...authErrorProcess({ msg: '登录成功', status: 'success', code: 200 }),
       ...payload,
       token
     };

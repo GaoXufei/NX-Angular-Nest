@@ -12,7 +12,7 @@ const COMPONENTS = [NavComponent, LeftSideComponent, RightSideComponent];
 const LAYOUT_COMPONENT = [LayoutDefaultComponent, LayoutLoginComponent];
 
 @NgModule({
-  declarations: [...LAYOUT_COMPONENT, ...COMPONENTS, LayoutLoginComponent],
+  declarations: [...LAYOUT_COMPONENT, ...COMPONENTS],
   imports: [CommonModule, SharedModule]
 })
 export class LayoutModule {}

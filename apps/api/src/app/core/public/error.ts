@@ -1,3 +1,6 @@
 import { ErrorProcess } from '../interfaces/error-process.interface';
 
-export const errorProcess = (errorInfo: ErrorProcess) => errorInfo;
+export const authErrorProcess = (errorInfo: ErrorProcess) => ({
+  ...errorInfo,
+  type: 'sign'
+});

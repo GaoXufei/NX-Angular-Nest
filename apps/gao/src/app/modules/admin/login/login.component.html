@@ -39,7 +39,12 @@
           </mat-error>
         </mat-form-field>
         <div>
-          <button type="submit" mat-raised-button color="primary">
+          <button
+            type="submit"
+            mat-raised-button
+            color="primary"
+            [disabled]="signLoading"
+          >
             Login
           </button>
         </div>
