@@ -43,7 +43,6 @@ export class LoginComponent implements OnInit {
       const login$ = this.requestService.login(data);
       login$.subscribe(response => {
         console.log(response);
-        this.router.navigate(['/']);
       });
     }
   }

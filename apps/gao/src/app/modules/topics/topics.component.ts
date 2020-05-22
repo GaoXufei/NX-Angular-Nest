@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { RequestService } from '../../request/request.service';
 
 export interface Tile {
   color: string;
@@ -21,7 +22,10 @@ export class TopicsComponent implements OnInit {
     { text: 'Five', fxFlex: 20, height: '30px', color: '#ccc' },
     { text: 'six', fxFlex: 20, height: '20px', color: 'red' }
   ];
-  constructor() {}
+  constructor(private readonly requestService: RequestService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    const topic$ = this.requestService.topic();
+    topic$.subscribe(console.log);
+  }
 }
