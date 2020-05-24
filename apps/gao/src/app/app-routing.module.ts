@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
 import { LayoutDefaultComponent } from './layout/default/default.component';
 import { NotfindpageComponent } from './modules/notfindpage/notfindpage.component';
-import { LayoutLoginComponent } from './layout/layout-login/layout-login.component';
+import { LayoutAdminComponent } from './layout/layout-admin/layout-admin.component';
 
 const routes: Routes = [
   {
@@ -32,14 +32,14 @@ const routes: Routes = [
     ]
   },
   {
-    path: 'passport',
-    component: LayoutLoginComponent,
+    path: 'admin',
+    component: LayoutAdminComponent,
     children: [
       {
-        path: 'login',
+        path: '',
         loadChildren: () =>
-          import('@gao/src/app/modules/admin/login/login.module').then(
-            m => m.LoginModule
+          import('@gao/src/app/modules/admin/admin.module').then(
+            m => m.AdminModule
           )
       }
     ]

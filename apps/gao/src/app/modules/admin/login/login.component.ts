@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Validators, FormBuilder } from '@angular/forms';
 import { Login } from '@gao/src/app/types/login';
 import { Router } from '@angular/router';
-import { timer } from 'rxjs';
-import { map } from 'rxjs/operators';
-import { RequestService } from '../../../request/request.service';
+import { timer, Subject, ReplaySubject } from 'rxjs';
+import { RequestService } from '@gao/src/app/request/request.service';
+import { debounceTime } from 'rxjs/operators';
 
 @Component({
   selector: 'nxgao-login',
@@ -12,8 +12,7 @@ import { RequestService } from '../../../request/request.service';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-  public signLoading = false;
-  private login;
+  private submitSubject$ = new Subject<any>();
   // 创建一个formGroup -> formBuilder
   registerForm = this.formBuilder.group({
     username: ['', [Validators.required]],
@@ -22,28 +21,30 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private readonly formBuilder: FormBuilder,
-    private readonly requestService: RequestService,
-    private readonly router: Router
+    private readonly requestService: RequestService
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    // 订阅subject并且进行防抖操作
+    this.submitSubject$
+      .pipe(debounceTime(500))
+      .subscribe(() => this.sendSign());
+  }
 
-  public async handleLogin() {
+  private sendSign() {
+    // 获取用户输入项
+    const data: Login = this.registerForm.value;
+    // 提交到服务器
+    this.requestService.login(data).subscribe();
+  }
+
+  public handleLogin() {
+    // 获取当前表单输入是否完成的状态
     const isValidate = this.registerForm.status;
-
-    timer(3000)
-      .pipe((item: any) => {
-        this.signLoading = true;
-        return item;
-      })
-      .subscribe(() => (this.signLoading = false));
-
+    // 如果完成
     if (isValidate === 'VALID') {
-      const data: Login = this.registerForm.value;
-      const login$ = this.requestService.login(data);
-      login$.subscribe(response => {
-        console.log(response);
-      });
+      // 发送通知
+      this.submitSubject$.next();
     }
   }
 }

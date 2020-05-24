@@ -17,7 +17,6 @@ export class AuthController {
   @Get('test')
   @UseGuards(AuthGuard())
   async test(@UserDecorator() user) {
-    console.log(user);
     return { message: 'OK' };
   }
 }
