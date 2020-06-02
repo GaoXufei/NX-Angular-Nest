@@ -28,7 +28,6 @@ export class TopicController {
   }
 
   @Get()
-  @UseGuards(AuthGuard())
   @UseInterceptors(ClassSerializerInterceptor)
   async topics() {
     const entity = await this.topicService.topic();
