@@ -11,6 +11,8 @@ import { LoginComponent } from './login/login.component';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { AppSideComponent } from '../../components/admin/app-side/app-side.component';
 import { UserPanelComponent } from '../../components/admin/app-side/user-panel/user-panel.component';
+import { MenuSideDirective } from '../../components/admin/app-side/menu-side/menu-side.directive';
+import { MenuSideComponent } from '../../components/admin/app-side/menu-side/menu-side.component';
 const MaterialModules = [MatSidenavModule];
 //#endregion
 
@@ -20,7 +22,9 @@ const COMPONENTS = [
   AdminComponent,
   LoginComponent,
   AppSideComponent,
-  UserPanelComponent
+  UserPanelComponent,
+  MenuSideDirective,
+  MenuSideComponent
 ];
 //#endregion
 
