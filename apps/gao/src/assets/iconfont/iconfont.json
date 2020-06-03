@@ -6,6 +6,27 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "1471597",
+      "name": "set",
+      "font_class": "set",
+      "unicode": "e619",
+      "unicode_decimal": 58905
+    },
+    {
+      "icon_id": "6072734",
+      "name": "User Settings",
+      "font_class": "UserSettings",
+      "unicode": "e68d",
+      "unicode_decimal": 59021
+    },
+    {
+      "icon_id": "8952713",
+      "name": "exit",
+      "font_class": "exit",
+      "unicode": "e7fc",
+      "unicode_decimal": 59388
+    },
+    {
       "icon_id": "553323",
       "name": "姓名 用户名 昵称",
       "font_class": "xingmingyonghumingnicheng",

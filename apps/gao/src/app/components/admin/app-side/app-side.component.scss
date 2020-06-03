@@ -1,0 +1,33 @@
+:host {
+  & .admin-side-container {
+    width: 240px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+
+    & .sidebar-header {
+      height: 64px;
+      padding: 0 10px;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      border-bottom: 1px solid #f5f5f5;
+      box-sizing: border-box;
+
+      & h1 {
+        font-size: 36px;
+        width: 100%;
+        text-align: center;
+      }
+    }
+
+    & .sidebar-user{
+      box-sizing: border-box;
+      border-bottom: 1px solid #f5f5f5;
+    }
+
+    & .sidebar-menus{
+      flex: 1;
+    }
+  }
+}

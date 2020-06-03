@@ -1,2 +1,9 @@
-<aside>left</aside>
-<router-outlet></router-outlet>
+<mat-drawer-container class="example-container">
+  <mat-drawer #drawer opened mode="side">
+    <nxgao-app-side></nxgao-app-side>
+  </mat-drawer>
+  <mat-drawer-content>
+    <button (click)="drawer.toggle()">Toggle drawer</button>
+    <router-outlet></router-outlet>
+  </mat-drawer-content>
+</mat-drawer-container>
