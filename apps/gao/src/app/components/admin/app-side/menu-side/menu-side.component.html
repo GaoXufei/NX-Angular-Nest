@@ -1,3 +1,31 @@
-<ul>
-  <li nxgaoMenuSide>1111</li>
-</ul>
+<mat-tree [dataSource]="dataSource" [treeControl]="treeControl">
+  <!-- This is the tree node template for leaf nodes -->
+  <mat-tree-node
+    *matTreeNodeDef="let node"
+    [routerLink]="[node.url]"
+    [routerLinkActive]="'active'"
+    [matTreeNodePaddingIndent]="node.level == 1 ? '45px' : '35px'"
+    matTreeNodePadding
+  >
+    <!-- use a disabled button to provide padding for tree leaf -->
+    <mat-icon *ngIf="node.icon">
+      {{ node.icon }}
+    </mat-icon>
+    <span>{{node.name}}</span>
+    <button mat-icon-button disabled>
+      <!-- <mat-icon>label_outline</mat-icon> -->
+    </button>
+  </mat-tree-node>
+  <!-- This is the tree node template for expandable nodes -->
+  <mat-tree-node *matTreeNodeDef="let node;when: hasChild" matTreeNodeToggle [matTreeNodePaddingIndent]="'45px'" matTreeNodePadding>
+    <mat-icon *ngIf="node.icon">
+      {{ node.icon }}
+    </mat-icon>
+    <span>{{node.name}}</span>
+    <button mat-icon-button  [attr.aria-label]="'toggle ' + node.name">
+      <mat-icon class="mat-icon-rtl-mirror">
+        {{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
+      </mat-icon>
+    </button>
+  </mat-tree-node>
+</mat-tree>

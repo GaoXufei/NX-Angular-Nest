@@ -12,6 +12,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 // import { MatFormFieldModule } from '@angular/material/form-field';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import {MatTreeModule} from '@angular/material/tree';
+import { MatSidenavModule } from '@angular/material/sidenav';
 
 const MaterialModules = [
   MatMenuModule,
@@ -21,7 +23,9 @@ const MaterialModules = [
   MatInputModule,
   MatToolbarModule,
   MatIconModule,
-  MatSnackBarModule
+  MatSnackBarModule,
+  MatTreeModule,
+  MatSidenavModule
 ];
 
 const AngularModules = [FormsModule, ReactiveFormsModule];
