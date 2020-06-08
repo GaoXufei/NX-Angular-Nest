@@ -13,11 +13,11 @@ const TREE_DATA: SideListNode[] = [
   {
     name: 'Dashboard',
     url: '/admin/dashboard',
-    icon: 'featured_play_list',
+    icon: 'view_quilt',
   },
   {
     name: 'User',
-    icon: 'home',
+    icon: 'assignment_ind',
     children: [
       {
         name: 'asd',
@@ -28,7 +28,49 @@ const TREE_DATA: SideListNode[] = [
         ]
       }
     ]
-  }
+  },
+  {
+    name: 'Gavel',
+    icon: 'gavel',
+    children: [
+      {
+        name: 'asd',
+        children: [
+          {
+            name: 'dsa'
+          }
+        ]
+      }
+    ]
+  },
+  {
+    name: 'Fingerprint',
+    icon: 'fingerprint',
+    children: [
+      {
+        name: 'asd',
+        children: [
+          {
+            name: 'dsa'
+          }
+        ]
+      }
+    ]
+  },
+  {
+    name: 'CallToAction',
+    icon: 'call_to_action',
+    children: [
+      {
+        name: 'asd',
+        children: [
+          {
+            name: 'dsa'
+          }
+        ]
+      }
+    ]
+  },
 ];
 interface ExampleFlatNode {
   expandable: boolean;

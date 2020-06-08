@@ -8,11 +8,13 @@
     outline: none;
 
     &.active{
-      background: #ccc;
+      background: #333;
+      color: #fff;
     }
 
     &:hover{
       background: #f1f1f1;
+      color: #333;
     }
 
     & > mat-icon{

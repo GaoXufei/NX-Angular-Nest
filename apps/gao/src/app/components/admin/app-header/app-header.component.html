@@ -1,6 +1,30 @@
 <mat-toolbar>
-  <span (click)="toggleDrawer.emit()">Third Line</span>
+  <button mat-icon-button (click)="toggleDrawer.emit()">
+    <mat-icon>menu</mat-icon>
+  </button>
   <span class="example-spacer"></span>
-  <mat-icon class="example-icon" aria-hidden="false" aria-label="Example heart icon">favorite</mat-icon>
-  <mat-icon class="example-icon" aria-hidden="false" aria-label="Example delete icon">delete</mat-icon>
+  <button mat-icon-button class="example-icon">
+    <mat-icon (click)="toggleScreen()"  aria-hidden="false" aria-label="Example heart icon" >fullscreen</mat-icon>
+  </button>
+  <button mat-icon-button class="example-icon">
+    <mat-icon aria-hidden="false" aria-label="Example delete icon">notifications_none</mat-icon>
+  </button>
+  <button mat-button class="admin-header-author" [matMenuTriggerFor]="menu">
+    <img src="/assets/images/author.jpg" alt="">
+    <span>Gaoxufei</span>
+  </button>
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item>
+      <i class="iconfont icon-UserSettings"></i>
+      <span>用户设置</span>
+    </button>
+    <button mat-menu-item>
+      <i class="iconfont icon-set"></i>
+      <span>偏好设置</span>
+    </button>
+    <button mat-menu-item>
+      <i class="iconfont icon-exit"></i>
+      <span>退出</span>
+    </button>
+  </mat-menu>
 </mat-toolbar>

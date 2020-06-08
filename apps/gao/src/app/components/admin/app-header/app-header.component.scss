@@ -1,4 +1,31 @@
 :host{
+  mat-icon{
+    cursor: pointer;
+  }
+
+  & .toggleDrawer{
+
+  }
+
+  & .admin-header-author{
+    font-family: 'Titillium', Arial, sans-serif;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius: 45px;
+
+    & img{
+      height: 34px;
+      border-radius: 50%;
+      margin-right: 8px;
+    }
+  }
+
+  // & .example-icon{
+  //   & + .example-icon{
+  //     margin-left: 10px;
+  //   }
+  // }
+
   & .example-spacer{
     flex: 1 1 auto;
   }
