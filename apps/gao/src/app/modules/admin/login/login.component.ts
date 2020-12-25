@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Validators, FormBuilder } from '@angular/forms';
 import { Login } from '@gao/src/app/types/login';
-import { Router } from '@angular/router';
-import { timer, Subject, ReplaySubject } from 'rxjs';
+import { Subject } from 'rxjs';
 import { RequestService } from '@gao/src/app/request/request.service';
 import { debounceTime } from 'rxjs/operators';
 
